@@ -1,4 +1,4 @@
-A Django-based web application for managing events and organizer profiles. Eventium is a lightweight event management platform where users can create and manage events, as well as build and update their organizer profiles. The app follows Django best practices with a clear structure, validations, and clean template rendering. It includes dynamic navigation, conditional rendering based on organizer status, and simple relational database logic using Django ORM.
+A Django-based web application for managing events and organizer profiles. Eventium is a lightweight event management platform where users can create and manage events, as well as build and update their organizer profiles. The app was developed as part of a SoftUni project and follows Django best practices with a clear structure, validations, and clean template rendering. It includes dynamic navigation, conditional rendering based on organizer status, and simple relational database logic using Django ORM.
 
 ## Features
 
@@ -60,8 +60,9 @@ eventiumApplication/
 ├── templates/               # HTML templates (base, event, organizer)
 ├── manage.py                # Django entry point
 └── db.sqlite3               # Local SQLite database (used for development)
+```
 
-## Possible extensions
+## Possible Extensions
 
 - Add user authentication and support for multiple organizer accounts  
 - Use PostgreSQL instead of SQLite for production  
