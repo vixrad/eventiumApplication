@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <main>
+        <!-- Organizer's Profile Details Section -->
+        <section id="details">
+            <div id="details-wrapper">
+                <!-- company name -->
+                <h2>{{ organizer.company_name }}</h2>
+                <!-- default image -->
+                <img id="details-img" src="{% static 'images/organizer-default.png' %}" alt="profile img" />
+
+                <!-- phone number -->
+                <p id="nutrition"><span>Phone: </span>{{ organizer.phone_number }}</p>
+
+                <!-- website if provided -->
+                {% if organizer.website %}
+                    <p id="nutrition"><span>Website: </span>{{ organizer.website }}</p>
+                {% endif %}
+
+                <div id="info-wrapper">
+                    <div id="details-description">
+                        {% if upcoming_events %}
+                            <p><span>Upcoming Events:</span></p>
+                            <ul>
+                                {% for event in upcoming_events %}
+                                    <li>
+                                        {{ event.start_time|date:"Y-m-d H:i" }} {{ event.slogan }} @ {{ event.location }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    </div>
+
+                    <!--Edit and Delete buttons -->
+                    <div id="action-buttons">
+                        <a href="{% url 'edit-organizer' %}" id="edit-btn">Edit</a>
+                        <a href="{% url 'delete-organizer' %}" id="delete-btn">Delete</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

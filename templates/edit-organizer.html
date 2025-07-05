@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <main>
+        <!-- Edit Organizer's Profile Form -->
+        <section id="register">
+            <div class="form">
+                <h2>Edit Organizer's Profile</h2>
+                <form class="register-form" method="post">
+                    {% csrf_token %}
+
+                    {% if form.errors %}
+                        <ul>
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <li>{{ field.label }}: {{ error }}</li>
+                                {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+
+                    <div>
+                        <label for="{{ form.company_name.id_for_label }}">Company Name:</label>
+                        <div class="helptext" id="id_company_name_helptext">*Allowed names contain letters, digits, spaces, and hyphens.</div>
+                        {{ form.company_name }}
+                    </div>
+
+                    <div>
+                        <label for="{{ form.phone_number.id_for_label }}">Phone Number:</label>
+                        {{ form.phone_number }}
+                    </div>
+
+                    <div>
+                        <label for="{{ form.website.id_for_label }}">Website:</label>
+                        {{ form.website }}
+                    </div>
+
+                    <button type="submit">Edit</button>
+                </form>
+            </div>
+        </section>
+    </main>
+{% endblock %}

@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=\, initial-scale=1.0" />
+        <link rel="stylesheet" href="{% static 'styles/styles.css' %}" />
+        <title>Eventium</title>
+    </head>
+
+    <body>
+        <div id="wrapper">
+            <header>
+                <!-- Navigation -->
+
+                <!-- Logo image: a link to index/home page -->
+                <a id="logo" href="{% url 'index' %}">
+                    <img id="logo-img" src="{% static 'images/logo-img.png' %}" alt="logo" />
+                </a>
+
+                <nav>
+                {% if organizer_profile %}
+                    <!-- If there is an organizer's profile -->
+                    <div class="user">
+                        <a href="{% url 'events' %}">Events</a>
+                        <a href="{% url 'create-event' %}">New Event</a>
+                        <a href="{% url 'details-organizer' %}">Organizer's Profile</a>
+                    </div>
+                {% else %}
+                    <!-- If the organizer's profile has NOT been created -->
+                    <div class="guest">
+                        <a href="{% url 'create-organizer' %}">New Organizer</a>
+                    </div>
+                {% endif %}
+                </nav>
+            </header>
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <p style="color: red">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+
+            {% block content %}
+            {% endblock %}
+
+        <!-- footer -->
+            <footer>
+                <p>&copy; 2025 Eventium by SoftUni Team. All rights reserved.</p>
+            </footer>
+        </div>
+    </body>
+</html>

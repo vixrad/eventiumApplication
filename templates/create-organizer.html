@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+    <main>
+        <section id="register">
+            <div class="form">
+                <h2>New Organizer's Profile</h2>
+                <form class="register-form" method="post" action="">
+                    {% csrf_token %}
+
+                    {% if form.errors %}
+                        <ul>
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li>{{ field.label }}: {{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                        </ul>
+                    {% endif %}
+
+                    <div>
+                        <label for="{{ form.company_name.id_for_label }}">Company Name:</label>
+                        <div class="helptext" id="id_company_name_helptext">
+                            *Allowed names contain letters, digits, spaces, and hyphens.
+                        </div>
+                        {{ form.company_name }}
+                    </div>
+
+                    <div>
+                        <label for="{{ form.phone_number.id_for_label }}">Phone Number:</label>
+                        {{ form.phone_number }}
+                    </div>
+
+                    <div>
+                        <label for="{{ form.secret_key.id_for_label }}">Secret Key:</label>
+                        <div class="helptext" id="id_secret_key_helptext">
+                            *Pick a combination of 4 unique digits.
+                        </div>
+                        {{ form.secret_key }}
+                    </div>
+
+                    <button type="submit">Create</button>
+                </form>
+            </div>
+        </section>
+    </main>
+{% endblock %}

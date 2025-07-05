@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block content %}
+<main>
+    <!-- Add Event Form -->
+    <section id="create">
+        <div class="form">
+            <h2>New Event</h2>
+            <form class="register-form" method="post" action="">
+                {% csrf_token %}
+
+                {% if form.errors %}
+                    <ul>
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <li>{{ field.label }}: {{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+
+                <div>
+                    <label for="{{ form.slogan.id_for_label }}">Slogan:</label>
+                    {{ form.slogan }}
+                </div>
+
+                <div>
+                    <label for="{{ form.location.id_for_label }}">Location:</label>
+                    {{ form.location }}
+                </div>
+
+                <div>
+                    <label for="{{ form.start_time.id_for_label }}">Event Date/Time:</label>
+                    {{ form.start_time }}
+                </div>
+
+                <div>
+                    <label for="{{ form.available_tickets.id_for_label }}">Available Tickets:</label>
+                    {{ form.available_tickets }}
+                </div>
+
+                <div>
+                    <label for="{{ form.key_features.id_for_label }}">Event Key Features:</label>
+                    {{ form.key_features }}
+                </div>
+
+                <div>
+                    <label for="{{ form.banner_url.id_for_label }}">Event Banner URL:</label>
+                    {{ form.banner_url }}
+                </div>
+
+                <button type="submit">Create Event</button>
+            </form>
+        </div>
+    </section>
+</main>
+{% endblock %}
